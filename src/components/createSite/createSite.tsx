@@ -39,10 +39,7 @@ const siteSchema = z.object({
     .string()
     .nonempty("Name is required")
     .max(100, "Name must be 100 characters or less"),
-  description: z
-    .string()
-    .nonempty("Description is required")
-    .max(255, "Description must be 255 characters or less"),
+  description: z.string().optional(),
   avatar: z.string().optional(),
 });
 
