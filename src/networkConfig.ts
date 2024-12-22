@@ -1,4 +1,5 @@
-import { getFullnodeUrl } from "@mysten/sui/client";
+import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
+import { SuiGraphQLClient } from "@mysten/sui/graphql";
 import {
   DEVNET_COUNTER_PACKAGE_ID,
   TESTNET_COUNTER_PACKAGE_ID,
@@ -28,4 +29,18 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
     },
   });
 
-export { useNetworkVariable, useNetworkVariables, networkConfig };
+const suiClient = new SuiClient({
+  url: `https://fullnode.${import.meta.env.VITE_CONTRACT_ENV}.sui.io:443`,
+});
+
+const suiGraphQLClient = new SuiGraphQLClient({
+  url: `https://sui-${import.meta.env.VITE_CONTRACT_ENV}.mystenlabs.com/graphql`,
+});
+
+export {
+  useNetworkVariable,
+  useNetworkVariables,
+  networkConfig,
+  suiClient,
+  suiGraphQLClient,
+};
